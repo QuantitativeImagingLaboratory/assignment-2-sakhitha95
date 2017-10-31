@@ -55,9 +55,9 @@ class Filtering:
                 else:
                     mask[u][v]=0
 
-        print(mask)
-        cv2.imshow("image",mask)
-        cv2.waitKey(0)
+        # print(mask)
+        # cv2.imshow("image",mask)
+        # cv2.waitKey(0)
         return mask
 
 
@@ -75,9 +75,9 @@ class Filtering:
         mask=1-self.get_ideal_low_pass_filter(shape, cutoff)
 
 
-        cv2.imshow("image", mask)
-        cv2.waitKey(0)
-        
+        # cv2.imshow("image", mask)
+        # cv2.waitKey(0)
+        #
         return mask
 
     def get_butterworth_low_pass_filter(self, shape, cutoff):
@@ -98,8 +98,8 @@ class Filtering:
 
                 mask[u][v] = h
 
-        cv2.imshow("Image", mask)
-        cv2.waitKey(0)
+        # cv2.imshow("Image", mask)
+        # cv2.waitKey(0)
         
         return mask
 
@@ -123,8 +123,8 @@ class Filtering:
 
                 mask[u][v] = h
 
-        cv2.imshow("Image", mask)
-        cv2.waitKey(0)
+        # cv2.imshow("Image", mask)
+        # cv2.waitKey(0)
         return mask
 
     def get_gaussian_low_pass_filter(self, shape, cutoff):
@@ -143,8 +143,8 @@ class Filtering:
 
                 mask[u][v] = h
 
-        cv2.imshow("Image", mask)
-        cv2.waitKey(0)
+        # cv2.imshow("Image", mask)
+        # cv2.waitKey(0)
         
         return mask
 
@@ -253,6 +253,6 @@ class Filtering:
 
         final_filt = self.post_process_image(mag)
 
-        cv2.imshow("image", final_filt)
-        cv2.waitKey(0)
+        # cv2.imshow("image", final_filt)
+        # cv2.waitKey(0)
         return [final_filt, dftfinalmag, filtermag]
