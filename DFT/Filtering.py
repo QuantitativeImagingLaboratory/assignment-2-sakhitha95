@@ -247,8 +247,8 @@ class Filtering:
             for j in range(0, np.shape(infft)[1]):
                 mag[i][j] = math.sqrt(infft[i][j].real * infft[i][j].real + infft[i][j].imag * infft[i][j].imag)
 
-        cv2.imshow("image", mag)
-        cv2.waitKey(0)
+        # cv2.imshow("image", mag)
+        # cv2.waitKey(0)
         # mag = np.log(mag) * 12
 
         final_filt = self.post_process_image(mag)
