@@ -211,47 +211,19 @@ class Filtering:
         Note: You do not have to do zero padding as discussed in class, the inbuilt functions takes care of that
         filtered image, magnitude of DFT, magnitude of filtered DFT: Make sure all images being returned have grey scale full contrast stretch and dtype=uint8
         """
-        f = np.fft.fft2(self.image)
-        s = np.fft.fftshift(f)
-        # comp=np.log(np.absolute(s))*6
-        # cmp1=np.uint8(comp)
-        # cv2.imshow("image",cmp1)
-        # cv2.waitKey(0)
-        # magnitude of dft
-        dftmag = np.zeros((np.shape(s)[0], np.shape(s)[1]))
-        for i in range(0, np.shape(s)[0]):
-            for j in range(0, np.shape(s)[1]):
-                dftmag[i][j] = math.sqrt(s[i][j].real * s[i][j].real + s[i][j].imag * s[i][j].imag)
-        dftfinalmag = np.uint8(np.log(dftmag) * 12)
-        sh = []
-        sh.append(np.shape(s)[0])
-        sh.append(np.shape(s)[1])
-        #print(sh)
 
-        m = self.filter(sh, self.cutoff)
+        fft_image = np.fft.fft2(self.image)
+        shift_image = np.fft.fftshift(fft_image)
+        dftfinalmag = np.uint8(np.log(np.absolute(shift_image)) * 10)
+        mask = self.filter(np.shape(self.image), self.cutoff)
+        filter_image = shift_image * mask
+        filtermag = np.log(np.absolute(filter_image)) * 10
+        ishift_image = np.fft.ifftshift(filter_image)
+        ifft_image = np.fft.ifft2(ishift_image)
+        mag_image = np.absolute(ifft_image)
+        final_filt = self.post_process_image(mag_image)
 
-        final = s * m
-        # comp = np.log(np.absolute(final)) * 6
-        # cmp1 = np.uint8(comp)
-        # cv2.imshow("image", cmp1)
-        # cv2.waitKey(0)
-        magfinal = np.zeros((np.shape(final)[0], np.shape(final)[1]))
-        for i in range(0, np.shape(final)[0]):
-            for j in range(0, np.shape(final)[1]):
-                magfinal[i][j] = math.sqrt(final[i][j].real * final[i][j].real + final[i][j].imag * final[i][j].imag)
-        filtermag = self.post_process_image(np.uint8(np.log(magfinal) * 12))
-        invs = np.fft.ifftshift(final)
-        infft = np.fft.ifft2(invs)
-        mag = np.zeros((np.shape(infft)[0], np.shape(infft)[1]))
-        for i in range(0, np.shape(infft)[0]):
-            for j in range(0, np.shape(infft)[1]):
-                mag[i][j] = math.sqrt(infft[i][j].real * infft[i][j].real + infft[i][j].imag * infft[i][j].imag)
-
-        # cv2.imshow("image", mag)
-        # cv2.waitKey(0)
-        # mag = np.log(mag) * 12
-
-        final_filt = self.post_process_image(mag)
+        #return [f, dft_image, filter_finalimg]
 
         # cv2.imshow("image", final_filt)
         # cv2.waitKey(0)
