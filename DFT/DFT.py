@@ -12,7 +12,7 @@ class DFT:
         returns a complex matrix representing fourier transform"""
         r=np.shape(matrix)[0]
         c=np.shape(matrix)[1]
-        print(r,c)
+        #print(r,c)
         N=r
         final = np.zeros((r, c), dtype=np.complex_)
         u=np.shape(final)[0]
@@ -25,7 +25,7 @@ class DFT:
 
 
 
-        print(np.fft.fft2(matrix))
+        #print(np.fft.fft2(matrix))
 
 
 
@@ -38,7 +38,7 @@ class DFT:
         returns a complex matrix representing the inverse fourier transform"""
         r=np.shape(matrix)[0]
         c=np.shape(matrix)[1]
-        print(r,c)
+        #print(r,c)
         N=r
         finalift = np.zeros((r, c), dtype=np.complex_)
         u=np.shape(finalift)[0]
@@ -51,8 +51,8 @@ class DFT:
                         finalift[i][j]+=matrix[u][v]*(math.cos(2*math.pi*(u*i+v*j)/N)+1j*math.sin(2*math.pi*(u*i+v*j)/N))
 
 
-        print("Inbuilkt")
-        print(np.fft.ifft2(matrix))
+        #print("Inbuilkt")
+        #print(np.fft.ifft2(matrix))
 
 
         return finalift
@@ -91,7 +91,7 @@ class DFT:
         returns a matrix representing magnitude of the dft"""
         r=np.shape(matrix)[0]
         c=np.shape(matrix)[1]
-        print(r,c)
+        #print(r,c)
         N=r
         final = np.zeros((r, c))
         for u in range(0,N):

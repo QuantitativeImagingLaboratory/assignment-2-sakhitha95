@@ -184,7 +184,7 @@ class Filtering:
         b = 255
         c = np.min(image)
         d = np.max(image)
-        print(c, d)
+        #print(c, d)
         display = np.zeros((np.shape(image)[0], np.shape(image)[1]), dtype="uint8")
         for i in range(0, np.shape(image)[0]):
             for j in range(0, np.shape(image)[1]):
@@ -226,7 +226,7 @@ class Filtering:
         sh = []
         sh.append(np.shape(s)[0])
         sh.append(np.shape(s)[1])
-        print(sh)
+        #print(sh)
 
         m = self.filter(sh, self.cutoff)
 
