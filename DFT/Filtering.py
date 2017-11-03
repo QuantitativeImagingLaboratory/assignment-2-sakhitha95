@@ -166,8 +166,8 @@ class Filtering:
 
                 mask[u][v] = 1-h
 
-        cv2.imshow("Image", mask)
-        cv2.waitKey(0)
+        # cv2.imshow("Image", mask)
+        # cv2.waitKey(0)
         
         return mask
 
